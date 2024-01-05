@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+
+.container{
+    width: 50%;
+margin: auto;
+
+}
+
+.subcont{
+    display: flex;
+    flex-direction: column;
+    
+    text-align: center;
+    margin-top: 50px;
+    background-color: lightblue;
+    border-radius: 30px;
+    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.361) ;
+    height: 500px;
+}
+
+.inputinfo{
+    margin: 20px 10px;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-size: 30px;
+}
+
+.info{
+   margin: 50px;
+}
+
+.info .location{
+    font-size: 80px;
+}
+
+p{
+    font-size: 30px;
+    margin-top: 20px;
+}
