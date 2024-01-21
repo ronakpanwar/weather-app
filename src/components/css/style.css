@@ -5,16 +5,15 @@
 }
 
 .container{
-    width: 100%;
+
+
+
+}
+.container img{
+    width: 100vw;
     height: 100vh;
-
-background-image: url('/src/img/sunny-background.jpg') ;
-background-position:center;
-background-repeat: no-repeat;
-background-size: cover;
-
-
-
+    position: fixed;
+    z-index: -1;
 }
 
 .main{
@@ -22,19 +21,20 @@ background-size: cover;
     display: flex;
  
     justify-content: center;
-    padding-top: 100px;
+    padding-top: 50px;
  
 }
 
 
 .main-block{
-    
+    color: white;
     display: flex;
     width: 40%;
     align-items: center;
     justify-content: center;
-   background-color: rgba(71, 75, 79, 0.351);
+   background-color: rgba(0, 0, 0, 0.475);
    border-radius: 20px;
+   padding: 30px;
    
 }
 
@@ -78,6 +78,16 @@ background-size: cover;
     font-size: 50px;
    
 }
+.w-type{
+    display: flex;
+    justify-content: center;
+    font-size: 10px;
+}
+.w-type div{
+  margin-left: 30px;
+ 
+}
+
 .min-max{
     display:flex ;
     justify-content: space-evenly;

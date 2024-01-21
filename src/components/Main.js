@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import '../components/css/style.css';
-import '../img/clouds.jpg'
+import clouds from '../img/clouds.jpg';
+import night from '../img/night.jpg';
+import rainy from '../img/rainy.jpg';
+import sunny from '../img/sunny-background.jpg';
 
 function Main() {
     const [city, setCity] = useState(null);
     const [search, setSearch] = useState('');
-    const [mist, setMist] = useState(null);
-    const [suuny, setSunny] = useState(null);
-    const [rain, setRain] = useState(null);
+    const [image ,  setImage] = useState(night);
+
+    const date = new Date();
+    const showTime = date.getHours()+ ':' + date.getMinutes() ;
+    
+    
+
+  
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -31,11 +39,36 @@ function Main() {
         if (search.trim() !== '') {
             fetchApi();
         }
+       
+       
+       
+       
+
     }, [search]);
+  
+   
+    if (city && city.weather) {
+      const con = city.weather.map(weather => weather.main);
+        // Use the con array as needed
+        console.log(con[0]);
+
+      
+
+      } else {
+        // Handle the case where city or city.weather is null or undefined
+        
+      }
+    
+     
+
+    
+
+
 
     return (
         <>
-            <div className='container' >
+            <div className='container'>
+            <img src={image} alt="" />
                 <div className="main">
                     <div className="main-block">
                         <div className="input">
@@ -51,8 +84,9 @@ function Main() {
                             ) : (
                                 <div>
                                     <div className="info">
+                                    <h3>{showTime}</h3>
                                         <h1 className='location'>
-                                            <i className="fa-solid fa-street-view"></i> {city.name}
+                                            <i className="fa-solid fa-street-view"></i> {city.name} 
                                         </h1>
                                     </div>
                                     <div className="result">
@@ -72,8 +106,14 @@ function Main() {
                                         <h3>o</h3>
                                         <h1><i class="fa-solid fa-c"></i></h1>
                                     </div>
-                                    <h1>Weather </h1>
-                                    <div className="weather-cond">
+                                    <div className='w-type'>
+                                    <h1>Weather -</h1>
+                                    <h1 id='w-c'>{city.weather.map(weather =><div> {weather.main} </div>)} </h1>
+                                     <div>
+                                     <h1><i class="fa-solid fa-wind"></i> {city.wind.speed} Km/h</h1>
+                                     </div>
+                                    </div>
+                                    {/* <div className="weather-cond">
                                         <div className="box">
                                             <i class="fa-solid fa-cloud-meatball"></i>
                                             <h2>mist</h2>
@@ -90,7 +130,7 @@ function Main() {
                                                 <h2>night</h2>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
 
                             )}
