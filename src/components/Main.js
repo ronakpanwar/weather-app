@@ -4,16 +4,18 @@ import clouds from '../img/clouds.jpg';
 import night from '../img/night.jpg';
 import rainy from '../img/rainy.jpg';
 import sunny from '../img/sunny-background.jpg';
+import cloudspng from '../img/cloudy.png';
 
 function Main() {
     const [city, setCity] = useState(null);
     const [search, setSearch] = useState('');
-    const [image ,  setImage] = useState(night);
+    const [image ,  setImage] = useState(sunny);
     const [cheak , setCheak] = useState("");
+    const [img , setImg] = useState('');
     const date = new Date();
     const showTime = date.getHours()+ ':' + date.getMinutes() ;
     
-    
+    const time = date.getHours();
 
   
 
@@ -67,16 +69,27 @@ function Main() {
     }, [city]);
     
     useEffect(() => {
-        if (cheak === "Clear") {
-            setImage(sunny);
-        } else if (cheak === "Clouds") {
-            setImage(clouds);
-        } else if (cheak === "Rain") {
-            setImage(rainy);
-        } else {
+        if (time > 18 || time < 6) {
+            // Night time
             setImage(night);
+           
+        } else {
+       
+        
+            // Day time
+            if (cheak === "Clear") {
+
+                setImage(sunny);
+            } else if (cheak === "Clouds") {
+                setImage(clouds);
+            } else if (cheak === "Rain") {
+                setImage(rainy);
+            } else {
+                setImage(sunny);
+            }
         }
-    }, [cheak]);
+        
+    }, [cheak, time]);
     
     
 
@@ -103,7 +116,7 @@ function Main() {
                                     <div className="info">
                                     <h3>{showTime}</h3>
                                         <h1 className='location'>
-                                            <i className="fa-solid fa-street-view"></i> {city.name} 
+                                            <i className="fa-solid fa-street-view"></i> {city.name}  
                                         </h1>
                                     </div>
                                     <div className="result">
