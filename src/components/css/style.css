@@ -57,14 +57,38 @@
 
 .info{
     text-align: center;
+    
   
 }
 
 
 .info .location{
-    font-size: 50px;
+    font-size: 25px;
     margin: 20px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   
 }
+.info img{
+    width: 80px;
+    height: auto;
+    z-index: 1;
+    margin-left:300px;
+   animation-name: swape;
+   animation-duration:4s;
+ 
+}
+@keyframes swape {
+   0%{
+margin-left: 0px;
+   }
+   100%{
+margin-left: 300px;
+
+   }
+}
+
 .result{
     display: flex;
    justify-content: center;

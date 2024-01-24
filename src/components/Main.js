@@ -5,6 +5,12 @@ import night from '../img/night.jpg';
 import rainy from '../img/rainy.jpg';
 import sunny from '../img/sunny-background.jpg';
 import cloudspng from '../img/cloudy.png';
+import nightpng from '../img/night.png';
+import rainpng from '../img/umbrella.png';
+import snowclouds from '../img/snowy.png';
+
+
+
 
 function Main() {
     const [city, setCity] = useState(null);
@@ -72,18 +78,20 @@ function Main() {
         if (time > 18 || time < 6) {
             // Night time
             setImage(night);
-           
+           setImg(nightpng);
         } else {
        
         
             // Day time
             if (cheak === "Clear") {
-
+                setImg(cloudspng);
                 setImage(sunny);
             } else if (cheak === "Clouds") {
                 setImage(clouds);
+                setImg(snowclouds);
             } else if (cheak === "Rain") {
                 setImage(rainy);
+                setImg(rainpng);
             } else {
                 setImage(sunny);
             }
@@ -113,11 +121,14 @@ function Main() {
                                 <p>Please enter a valid city name</p>
                             ) : (
                                 <div>
+                                <h3>{showTime}</h3>
                                     <div className="info">
-                                    <h3>{showTime}</h3>
-                                        <h1 className='location'>
-                                            <i className="fa-solid fa-street-view"></i> {city.name}  
-                                        </h1>
+                                        
+                                        <div className='location'>
+                                           <h1> <i className="fa-solid fa-street-view"></i> {city.name} </h1>
+                                            <img src={img} alt="" />
+                                        </div>
+                                      
                                     </div>
                                     <div className="result">
                                         <h1>{city.main.temp}</h1>
