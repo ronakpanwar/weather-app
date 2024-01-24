@@ -9,7 +9,7 @@ function Main() {
     const [city, setCity] = useState(null);
     const [search, setSearch] = useState('');
     const [image ,  setImage] = useState(night);
-
+    const [cheak , setCheak] = useState("");
     const date = new Date();
     const showTime = date.getHours()+ ':' + date.getMinutes() ;
     
@@ -40,27 +40,44 @@ function Main() {
             fetchApi();
         }
        
+      
        
        
        
 
     }, [search]);
+
+
+
   
-   
-    if (city && city.weather) {
-      const con = city.weather.map(weather => weather.main);
-        // Use the con array as needed
-        console.log(con[0]);
-
-      
-
-      } else {
-        // Handle the case where city or city.weather is null or undefined
-        
-      }
     
-     
+ 
+    useEffect(() => {
+        if (city && city.weather) {
+            const con = city.weather.map(weather => weather.main);
+            // Use the con array as needed
+            console.log(con[0]);
+             
+            setCheak(con[0]);
 
+            
+        } else {
+            // Handle the case where city or city.weather is null or undefined
+        }
+    }, [city]);
+    
+    useEffect(() => {
+        if (cheak === "Clear") {
+            setImage(sunny);
+        } else if (cheak === "Clouds") {
+            setImage(clouds);
+        } else if (cheak === "Rain") {
+            setImage(rainy);
+        } else {
+            setImage(night);
+        }
+    }, [cheak]);
+    
     
 
 
@@ -107,8 +124,10 @@ function Main() {
                                         <h1><i class="fa-solid fa-c"></i></h1>
                                     </div>
                                     <div className='w-type'>
-                                    <h1>Weather -</h1>
-                                    <h1 id='w-c'>{city.weather.map(weather =><div> {weather.main} </div>)} </h1>
+                                    <div>
+                                    <h1>Weather - {cheak}</h1>
+                                    
+                                    </div>
                                      <div>
                                      <h1><i class="fa-solid fa-wind"></i> {city.wind.speed} Km/h</h1>
                                      </div>
